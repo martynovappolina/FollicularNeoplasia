@@ -11,7 +11,7 @@ function App() {
   const router = createBrowserRouter([
     {
       path: "/",
-      element: <div style={{maxWidth: '1200px'}}>
+      element: <div>
         <li><a href='/riskClarification'>Калькулятор уточнения риска злокачественности образования щитовидной железы с цитологической картиной неонкоцитарной фолликулярной неоплазии</a> </li>
         <br />
         <li><a href='/severityOfAtypia'>Калькулятор оценки степени выраженности атипии цитологической картины неонкоцитарной фолликулярной неоплазии</a> </li>

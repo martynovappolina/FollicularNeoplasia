@@ -13,7 +13,7 @@ const Calculator = ({fields, title, url, onNeedResult, calculateOnChageField=fal
         const initialState = {};
         
         fields.reduce((acc, curr) => {
-            acc[curr.val] = '';
+            acc[curr.val] = curr.defaultValue !== null? curr.defaultValue: '';
             acc[`${curr.val}Error`] = false
             return acc;
         }, initialState);
@@ -25,10 +25,15 @@ const Calculator = ({fields, title, url, onNeedResult, calculateOnChageField=fal
     const calculate = () => {
         const body = {}
 
+        fields.reduce((acc, curr) => {
+            let val = state[curr.val] === '' ? curr.checkbox? curr.defaultValue: 0: state[curr.val] 
+            acc[curr.val] = calculateOnChageField ? 0 : val
+            return acc
+        }, body)
+
         let tempState = state;
         let isError = false
         fields.map(f => {
-            debugger
             tempState[`${f.val}Error`] = tempState[`${f.val}`] === ''
             isError = isError || tempState[`${f.val}Error`]
         })
@@ -37,13 +42,8 @@ const Calculator = ({fields, title, url, onNeedResult, calculateOnChageField=fal
             ...prevState,
             ...tempState
         }));
-        if(isError) return
-        
-        fields.reduce((acc, curr) => {
-            let val = state[curr.val] === '' ? curr.checkbox? curr.defaultValue: 0: state[curr.val] 
-            acc[curr.val] = val
-            return acc
-        }, body)
+
+        if (isError && !calculateOnChageField) return
 
         if(onNeedResult !== undefined) {
             setResult(onNeedResult(body))

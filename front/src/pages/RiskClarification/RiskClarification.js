@@ -57,7 +57,7 @@ const RiskClarification = () => {
             }
 
             return ([
-                <table border="1" style={{borderCollapse: 'collapse'}}>
+                <table border="1">
                     <thead>
                         <tr>
                             <th rowSpan="2">Результат</th>

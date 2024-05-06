@@ -12,7 +12,7 @@ const noYesOptions = [
 export const riskClarificationFields = [
     {
         val: 'age',
-        defaultValue: 0,
+        defaultValue: null,
         optionLabels: [
             {
                 title: '>=35',
@@ -28,42 +28,42 @@ export const riskClarificationFields = [
     },
     {
         val: 'severelyReducedEchogenicity',
-        defaultValue: 0,
+        defaultValue: null,
         optionLabels: noYesOptions,
         label: '(УЗИ) Сильно сниженная эхогенность',
         checkbox: true,
     },
     {
         val: 'contourUnevenness',
-        defaultValue: 0,
+        defaultValue: null,
         optionLabels: noYesOptions,
         label: '(УЗИ) Неровность контура',
         checkbox: true,
     },
     {
         val: 'notRoundShape',
-        defaultValue: 0,
+        defaultValue: null,
         optionLabels: noYesOptions,
         label: '(УЗИ) Не округлая форма',
         checkbox: true,
     },
     {
         val: 'microcalcifications',
-        defaultValue: 0,
+        defaultValue: null,
         optionLabels: noYesOptions,
         label: '(УЗИ) Микрокальцинаты',
         checkbox: true,
     },
     {
         val: 'macrocalcifications',
-        defaultValue: 0,
+        defaultValue: null,
         optionLabels: noYesOptions,
         label: '(УЗИ) Макрокальцинаты',
         checkbox: true,
     },
     {
         val: 'degreeOfCytologicalAtypiaPaintings',
-        defaultValue: 0,
+        defaultValue: null,
         optionLabels: [
             {
                 title: '<=4',
@@ -83,14 +83,14 @@ export const riskClarificationFields = [
     },
     {
         val: 'RASMutation',
-        defaultValue: 0,
+        defaultValue: null,
         optionLabels: noYesOptions,
         label: 'Мутация RAS',
         checkbox: true,
     },   
     {
         val: 'BRAFMutation',
-        defaultValue: 0,
+        defaultValue: null,
         optionLabels: noYesOptions,
         label: 'Мутация BRAF',
         checkbox: true,
