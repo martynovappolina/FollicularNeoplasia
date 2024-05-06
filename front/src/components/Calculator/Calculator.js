@@ -8,40 +8,40 @@ import {objectToFormData} from '../../utils/objectToFormData'
 const Calculator = ({fields, title, url, onNeedResult, calculateOnChageField=false}) => {
     const [result, setResult] = useState()
     const [state, setState] = useState();
+    const [errorState, setErrorState] = useState({});
 
     const getInitState = () => {
         const initialState = {};
         
         fields.reduce((acc, curr) => {
             acc[curr.val] = curr.defaultValue !== null? curr.defaultValue: '';
-            acc[`${curr.val}Error`] = false
+            //acc[`${curr.val}Error`] = false
             return acc;
         }, initialState);
 
         setResult()
         setState(initialState)
+        setErrorState({})
     }
 
     const calculate = () => {
         const body = {}
+        console.log('asdasd')
 
         fields.reduce((acc, curr) => {
             let val = state[curr.val] === '' ? curr.checkbox? curr.defaultValue: 0: state[curr.val] 
-            acc[curr.val] = calculateOnChageField ? 0 : val
+            acc[curr.val] = val
             return acc
         }, body)
 
-        let tempState = state;
+        let tempErrorState = {};
         let isError = false
         fields.map(f => {
-            tempState[`${f.val}Error`] = tempState[`${f.val}`] === ''
-            isError = isError || tempState[`${f.val}Error`]
+            tempErrorState[`${f.val}Error`] = state[`${f.val}`] === ''
+            isError = isError || tempErrorState[`${f.val}Error`]
         })
 
-        setState(prevState => ({
-            ...prevState,
-            ...tempState
-        }));
+        setErrorState(tempErrorState);
 
         if (isError && !calculateOnChageField) return
 
@@ -84,11 +84,11 @@ const Calculator = ({fields, title, url, onNeedResult, calculateOnChageField=fal
                         setOption={v => {setState({...state, [field.val]: v})}}
                         optionLabels={field.optionLabels}
                         result={calculateOnChageField? undefined: result}
-                        error={state && state[`${field.val}Error`]}
+                        error={errorState && errorState[`${field.val}Error`]}
                         setError={()=>{
-                            const initialState = state;
+                            const initialState = errorState;
                             initialState[`${field.val}Error`] = false
-                            setState(prevState => ({
+                            setErrorState(prevState => ({
                                 ...prevState,
                                 ...initialState
                             }));
