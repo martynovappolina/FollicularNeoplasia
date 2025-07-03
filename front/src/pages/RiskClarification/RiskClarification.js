@@ -11,8 +11,7 @@ const RiskClarification = () => {
         fields={riskClarificationFields}
         onNeedResult={(fields)=>{
             let result = 'Отсутствуют признаки, ассоциированные с повышенным риском'
-            let riskOfMalignancy = '12 (7-20)'
-            let probabilityOfLowRiskOrMalignantLesion = '27 (20-36)'
+            let riskOfMalignancy = '7 (2; 15)'
             let color = '#C5E0B3'
             if (
                 fields.age === 1 || 
@@ -27,8 +26,7 @@ const RiskClarification = () => {
                         {fields.RASMutation === 1 && <li>Мутация RAS</li>}
                     </ul>
                 </div>
-                riskOfMalignancy = '35 (28-43)'
-                probabilityOfLowRiskOrMalignantLesion = '46 (37-54)'
+                riskOfMalignancy = '43 (38; 48)'
                 color = '#FFE599'
             }
             if (
@@ -40,8 +38,7 @@ const RiskClarification = () => {
                 fields.degreeOfCytologicalAtypiaPaintings === 2
             ) {
                 result = 'Высокий риск'
-                riskOfMalignancy = '63 (49-75)'
-                probabilityOfLowRiskOrMalignantLesion = '75 (60-86)'
+                riskOfMalignancy = '62 (49; 73)'
                 color = '#F7CAAC'
             }
             if (fields.BRAFMutation === 1) {
@@ -52,7 +49,6 @@ const RiskClarification = () => {
                     </ul>
                 </div>
                 riskOfMalignancy = '100'
-                probabilityOfLowRiskOrMalignantLesion = '0'
                 color = '#FD91B0'
             }
 
@@ -61,22 +57,20 @@ const RiskClarification = () => {
                     <thead>
                         <tr>
                             <th rowSpan="2">Результат</th>
-                            <th colSpan="2">Виды риска</th>
-                        </tr>
-                        <tr>
                             <th>Риск злокачественного образования, % (95% ДИ)</th>
-                            <th>Вероятность образования низкого риска или злокачественного, % (95% ДИ)</th>
                         </tr>
                     </thead>
                     <tr style={{backgroundColor: color}}>
                         <td>{result}</td>
                         <td>{riskOfMalignancy}</td>
-                        <td>{probabilityOfLowRiskOrMalignantLesion}</td>
                     </tr>
                 </table>
             ])
         }} />
-
+        <div className="notes">
+            <p>Согласно гистологической классификации опухолей щитовидной железы ВОЗ 2022 года. Доступно по ссылке:</p>
+            <p>Jung CK, Bychkov A, Kakudo K. Update from the 2022 World Health Organization Classification of Thyroid Tumors: A Standardized Diagnostic Approach. Endocrinol Metab. 2022;37(5):703-718. DOI: https://doi.org/10.3803/EnM.2022.1553</p>
+        </div>
       </div>
     )
 }

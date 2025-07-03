@@ -13,7 +13,7 @@ const SeverityOfAtypia = () => {
           onNeedResult={(fields)=>{
             let result = 0
             let degreeOfAtypia = 'Умеренная (Типичный сценарий)'
-            let riskOfMalignancy = '21 (16-27)'
+            let riskOfMalignancy = '17 (11; 25)'
             let color = '#C5E0B3'
 
             if (fields.highCellularity === 1) result += 1
@@ -25,15 +25,15 @@ const SeverityOfAtypia = () => {
             if (fields.darkCytoplasm === 1) result += 3
             if (fields.nuclearPseudoinclusions === 1) result += 4
 
-            if (result >= 5 && result <= 8) {
+            if (result >= 4 && result <= 7) {
                 degreeOfAtypia = 'Средняя (Атипичный сценарий)'
-                riskOfMalignancy = '39 (30-48)'
+                riskOfMalignancy = '39 (32; 46)'
                 color = '#FFE599'
             }
 
-            if (result >= 9 && result <= 13) {
+            if (result >= 8 && result <= 13) {
                 degreeOfAtypia = 'Выраженная (Явно атипичный сценарий)'
-                riskOfMalignancy = '71 (52-84)'
+                riskOfMalignancy = '66 (47; 81)'
                 color = '#F7CAAC'
             }
 

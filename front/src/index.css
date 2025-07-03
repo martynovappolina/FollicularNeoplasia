@@ -35,12 +35,17 @@ thead {
 
 table {
   border-collapse: collapse;
+  width: 100%;
 }
 
 table {
   ul li {
     text-align: left;
   }
+}
+
+.notes {
+  font-size: 12px;
 }
 
 .custom-input, .custom-select {

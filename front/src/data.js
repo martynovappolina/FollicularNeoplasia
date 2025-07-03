@@ -66,15 +66,15 @@ export const riskClarificationFields = [
         defaultValue: null,
         optionLabels: [
             {
-                title: '<=4',
+                title: '0-3',
                 value: 0
             },
             {
-                title: '5-8',
+                title: '4-7',
                 value: 1,
             },
             {
-                title: '>=9',
+                title: '8-13',
                 value: 2,
             },
         ],
