@@ -10,19 +10,22 @@ const RiskClarification = () => {
         title={'Калькулятор уточнения риска злокачественности образования щитовидной железы с цитологической картиной неонкоцитарной фолликулярной неоплазии'}
         fields={riskClarificationFields}
         onNeedResult={(fields)=>{
-            let result = 'Отсутствуют признаки, ассоциированные с повышенным риском'
+            let result = 'Низкий риск'
+            let justification = 'Отсутствуют признаки, ассоциированные с повышенным риском'
             let riskOfMalignancy = '7 (2; 15)'
             let color = '#C5E0B3'
+
             if (
                 fields.age === 1 || 
                 fields.degreeOfCytologicalAtypiaPaintings === 1 ||
                 fields.RASMutation === 1
             ) {
-                result = <div>
+                result = 'Средний риск'
+                justification = <div>
                     Указаны признаки, ассоциированные со средним риском:
                     <ul>
-                        {fields.age === 1 && <li>Возраст</li>}
-                        {fields.degreeOfCytologicalAtypiaPaintings === 1 && <li>Степень атипии цитологической картины (баллы)</li>}
+                        {fields.age === 1 && <li>Возраст 18-34 лет</li>}
+                        {fields.degreeOfCytologicalAtypiaPaintings === 1 && <li>4-7 баллов цитологической атипии</li>}
                         {fields.RASMutation === 1 && <li>Мутация RAS</li>}
                     </ul>
                 </div>
@@ -39,10 +42,22 @@ const RiskClarification = () => {
             ) {
                 result = 'Высокий риск'
                 riskOfMalignancy = '62 (49; 73)'
+                justification = <div>
+                    Указаны признаки, ассоциированные со средним риском:
+                    <ul>
+                        {fields.severelyReducedEchogenicity === 1 && <li>(УЗИ) Сильно сниженная эхогенность</li>}
+                        {fields.contourUnevenness === 1 && <li>(УЗИ) Неровность контура</li>}
+                        {fields.notRoundShape === 1 && <li>(УЗИ) Не округлая форма</li>}
+                        {fields.microcalcifications === 1 && <li>(УЗИ) Микрокальцинаты</li>}
+                        {fields.macrocalcifications === 1 && <li>(УЗИ) Макрокальцинаты</li>}
+                        {fields.degreeOfCytologicalAtypiaPaintings == 2 && <li>8-13 баллов цитологической атипии</li>}
+                    </ul>
+                </div>
                 color = '#F7CAAC'
             }
             if (fields.BRAFMutation === 1) {
-                result = <div>
+                result = 'Высокий риск'
+                justification = <div>
                     Указан признак очень высокого риска
                     <ul>
                         <li>Мутация BRAF</li>
@@ -56,21 +71,21 @@ const RiskClarification = () => {
                 <table border="1">
                     <thead>
                         <tr>
-                            <th rowSpan="2">Результат</th>
+                            <th>Результат</th>
                             <th>Риск злокачественного образования, % (95% ДИ)</th>
+                            <th>Обоснование</th>
                         </tr>
                     </thead>
                     <tr style={{backgroundColor: color}}>
                         <td>{result}</td>
                         <td>{riskOfMalignancy}</td>
+                        <td>{justification}</td>
                     </tr>
                 </table>
             ])
         }} />
-        <div className="notes">
-            <p>Согласно гистологической классификации опухолей щитовидной железы ВОЗ 2022 года. Доступно по ссылке:</p>
-            <p>Jung CK, Bychkov A, Kakudo K. Update from the 2022 World Health Organization Classification of Thyroid Tumors: A Standardized Diagnostic Approach. Endocrinol Metab. 2022;37(5):703-718. DOI: https://doi.org/10.3803/EnM.2022.1553</p>
-        </div>
+        <br />
+        *Расчет с помощью <a className="link" href="/severityOfAtypia" target="_blank">калькулятора</a> степени атипии цитологической картины неонкоцитарной фолликулярной неоплазии
       </div>
     )
 }

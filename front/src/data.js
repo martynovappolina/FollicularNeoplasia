@@ -15,15 +15,15 @@ export const riskClarificationFields = [
         defaultValue: null,
         optionLabels: [
             {
-                title: '>=35',
+                title: 'от 35',
                 value: 0
             },
             {
-                title: '<35',
+                title: '18-34',
                 value: 1,
             }
         ],
-        label: 'Возраст',
+        label: 'Возраст (лет)',
         checkbox: true,
     },
     {
@@ -78,7 +78,7 @@ export const riskClarificationFields = [
                 value: 2,
             },
         ],
-        label: <a className="link" href="/severityOfAtypia" target="_blank">Степень атипии цитологической картины (баллы)</a>,
+        label: 'Степень атипии цитологической картины (баллы)*',
         checkbox: true,
     },
     {
